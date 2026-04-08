@@ -3,111 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Page Assignment - Complete</title>
+    <title>Web Page Assignment</title>
     <style>
         body {
             font-family: serif;
             line-height: 1.6;
             margin: 40px;
-            background-color: #f4f4f4;
+            background-color: #e0e0e0; /* Gray background for the page */
         }
 
-        /* Container to mimic the white card look */
-        .page-container {
+        /* The white card container */
+        .content-card {
             background-color: white;
             padding: 30px;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 900px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            max-width: 800px;
             margin: auto;
-            position: relative;
+            overflow: hidden; /* Clears the float internally */
         }
 
-        /* --- 1. Table Styling --- */
-        table {
-            border-collapse: collapse;
-            width: 300px;
-            margin-bottom: 20px;
-        }
-
-        th, td {
-            border: 1px solid #444;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #666;
-            color: white;
-        }
-
-        .yellow-bg {
-            background-color: yellow;
-        }
-
-        /* --- 2. Inline-Block Styling --- */
-        .inline-highlight {
+        /* --- Inline-Block Styling --- */
+        .highlight-box {
             display: inline-block;
             background-color: yellow;
             border: 1px solid blue;
-            padding: 2px 6px;
+            padding: 2px 4px;
             margin: 0 2px;
-            line-height: normal; /* Keeps the highlight from stretching the line height */
+            line-height: normal;
         }
 
-        /* --- 3. Float Div with Overflow: Auto --- */
-        .float-box {
+        /* --- Float Div with Overflow Auto --- */
+        .scrolling-sidebar {
             float: right;
             width: 160px;
-            height: 160px;
-            border: 3px solid #76b041; /* Green border from image */
+            height: 180px;
+            border: 3px solid #76b041; /* The green border */
             margin-left: 20px;
             padding: 10px;
-            overflow: auto; /* Adds scrollbars if content is too long */
+            overflow: auto; /* Enables the scrollbar */
             background-color: #fff;
         }
     </style>
 </head>
 <body>
 
-<div class="page-container">
+<div class="content-card">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="yellow-bg">
-                <td>1</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>2</td>
-            </tr>
-            <tr class="yellow-bg">
-                <td>3</td>
-                <td>3</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <hr> <div class="float-box">
-        A float div with overflow auto. Adding extra text here to ensure the scrollbar appears: 
-        Scroll down to see more! This box is contained and neat.
+    <div class="scrolling-sidebar">
+        A float div with overflow auto. 
+        A float div with overflow auto. 
+        A float div with overflow auto. 
+        A float div with overflow auto. 
+        A float div with overflow auto.
     </div>
 
     <p>
         (Just long sentence.) Let me not to the marriage of true minds Admit impediments. 
-        <span class="inline-highlight">Love</span> is not love Which alters when it alteration finds, 
+        <span class="highlight-box">Love</span> is not love Which alters when it alteration finds, 
         Or bends with the remover to remove: O, no! it is an ever-fix'ed mark, That looks on tempests 
         and is never shaken; It is the star to every wand'ring bark, Whose worth's unknown, 
-        although his heighth be taken. <span class="inline-highlight">Love's</span> not Time's fool, 
+        although his heighth be taken. <span class="highlight-box">Love's</span> not Time's fool, 
         though rosy lips and cheeks Within his bending sickle's compass come; 
-        <span class="inline-highlight">Love</span> alters not with his brief hours and weeks, 
+        <span class="highlight-box">Love</span> alters not with his brief hours and weeks, 
         But bears it out even to the edge of doom. If this be error and upon me proved, 
         I never writ, nor no man ever loved.
     </p>
