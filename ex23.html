@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fixed Top-Right Button</title>
+    <title>Aligned Header Layout</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <style>
         :root {
             --btn-height: 22px;
             --btn-radius: 8px;
             --text-main: #2f2f2f;
+            --text-secondary: #707070;
             --bg-gray: #f6f6f6;
         }
 
@@ -21,29 +22,28 @@
             background-color: #f0f0f0;
         }
 
-        /* 1. This container is the anchor for the button */
         .card {
             width: 496px;
             background: white;
-            padding: 20px;
+            padding: 15px 20px; /* Reduced top padding to move header up */
             border: 1px solid #ddd;
-            position: relative; /* CRITICAL: This keeps the button inside the box */
         }
 
-        /* 2. The image area */
-        .image-container {
-            width: 450px;
-            height: 240px;
-            background: url('https://picsum.photos/id/11/450/240') center/cover;
-            margin: 0 auto;
-            border: 1px solid #eee;
+        /* The Header Row for Preview and Button */
+        .header-row {
+            display: flex;
+            justify-content: space-between; /* Pushes content to far left and far right */
+            align-items: center;
+            margin-bottom: 10px; /* Space between header and image */
+            padding: 0 5px;
         }
 
-        /* 3. The Button - Forced to Top Right */
+        .preview-label {
+            font-size: 13px;
+            color: #707070; /* Matching the designer's secondary text color */
+        }
+
         .spec-button {
-            position: absolute;
-            top: 35px;    /* Matches the '35' redline in your image */
-            right: 35px;  /* Moves it to the top-right corner */
             height: var(--btn-height);
             border-radius: var(--btn-radius);
             background: #ffffff;
@@ -52,17 +52,26 @@
             font-size: 13px;
             padding: 0 10px;
             cursor: pointer;
-            z-index: 100; /* Makes sure it stays on top of the image */
+            transition: background 0.2s;
         }
 
         .spec-button:hover {
             background-color: #f9f9f9;
         }
 
-        /* 4. Information Box */
+        /* Image Display - No longer absolute, it stays in the flow */
+        .image-display {
+            width: 450px;
+            height: 240px;
+            background: url('https://picsum.photos/id/11/450/240') center/cover;
+            margin: 0 auto;
+            border: 1px solid #eee;
+        }
+
+        /* Information Section */
         #info-panel {
             display: none;
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 15px;
             background-color: var(--bg-gray);
             border-top: 1px solid #eaeaea;
@@ -79,9 +88,12 @@
 <body>
 
 <div class="card">
-    <button class="spec-button" onclick="toggleInfo()">查看資訊</button>
+    <div class="header-row">
+        <span class="preview-label">預覽</span>
+        <button class="spec-button" onclick="toggleInfo()">查看資訊</button>
+    </div>
 
-    <div class="image-container"></div>
+    <div class="image-display"></div>
 
     <div id="info-panel">
         <strong>Detailed Information:</strong><br>
