@@ -3,75 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Detail View</title>
+    <title>Fixed Top-Right Button</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <style>
         :root {
             --btn-height: 22px;
             --btn-radius: 8px;
             --text-main: #2f2f2f;
-            --text-secondary: #707070;
-            --border-color: #eaeaea;
             --bg-gray: #f6f6f6;
         }
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f5f5f5;
             display: flex;
             justify-content: center;
             padding-top: 50px;
-        }
-
-        .container {
-            width: 496px;
-            background: #ffffff;
-            padding: 20px;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        /* The single image based on your request */
-        .image-display {
-            width: 450px;
-            height: 240px;
-            background: url('https://picsum.photos/450/240?lake') center/cover;
-            margin: 0 auto 15px;
-            border-radius: 2px;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: flex-end; /* Aligns button to the right */
-            margin-bottom: 20px;
-            padding-right: 23px;
-        }
-
-        .spec-button {
-            height: var(--btn-height);
-            border-radius: var(--btn-radius);
-            background: #fff;
-            border: 1px solid var(--text-main);
-            color: var(--text-main);
-            font-size: 13px;
-            padding: 0 15px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .spec-button:hover {
             background-color: #f0f0f0;
         }
 
-        /* The information box (hidden by default) */
+        /* 1. This container is the anchor for the button */
+        .card {
+            width: 496px;
+            background: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            position: relative; /* CRITICAL: This keeps the button inside the box */
+        }
+
+        /* 2. The image area */
+        .image-container {
+            width: 450px;
+            height: 240px;
+            background: url('https://picsum.photos/id/11/450/240') center/cover;
+            margin: 0 auto;
+            border: 1px solid #eee;
+        }
+
+        /* 3. The Button - Forced to Top Right */
+        .spec-button {
+            position: absolute;
+            top: 35px;    /* Matches the '35' redline in your image */
+            right: 35px;  /* Moves it to the top-right corner */
+            height: var(--btn-height);
+            border-radius: var(--btn-radius);
+            background: #ffffff;
+            border: 1px solid var(--text-main);
+            color: var(--text-main);
+            font-size: 13px;
+            padding: 0 10px;
+            cursor: pointer;
+            z-index: 100; /* Makes sure it stays on top of the image */
+        }
+
+        .spec-button:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* 4. Information Box */
         #info-panel {
             display: none;
+            margin-top: 20px;
             padding: 15px;
             background-color: var(--bg-gray);
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
+            border-top: 1px solid #eaeaea;
             font-size: 13px;
-            line-height: 1.8;
+            color: #707070;
+            line-height: 1.6;
         }
 
         .show {
@@ -81,12 +78,10 @@
 </head>
 <body>
 
-<div class="container">
-    <div class="image-display"></div>
+<div class="card">
+    <button class="spec-button" onclick="toggleInfo()">查看資訊</button>
 
-    <div class="button-container">
-        <button class="spec-button" onclick="toggleInfo()">查看資訊</button>
-    </div>
+    <div class="image-container"></div>
 
     <div id="info-panel">
         <strong>Detailed Information:</strong><br>
@@ -100,12 +95,7 @@
 <script>
     function toggleInfo() {
         const info = document.getElementById('info-panel');
-        // Toggle visibility
-        if (info.classList.contains('show')) {
-            info.classList.remove('show');
-        } else {
-            info.classList.add('show');
-        }
+        info.classList.toggle('show');
     }
 </script>
 
