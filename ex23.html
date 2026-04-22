@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Scrollbox Layout</title>
+    <title>Dynamic Scrollbox Fix</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -36,13 +36,11 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
-            padding: 0 5px;
         }
 
         .preview-label {
             font-size: 13px;
             color: var(--text-main);
-            font-weight: 500;
         }
 
         .spec-button {
@@ -54,32 +52,29 @@
             font-size: 11px;
             padding: 0 12px;
             cursor: pointer;
-            transition: all 0.2s;
         }
 
-        .spec-button:hover { background-color: #f0f0f0; }
-
+        /* The viewport that BECOMES a scrollbox on click */
         .viewport {
             width: 450px;
             margin: 0 auto;
             border: 1px solid transparent;
             overflow: hidden; 
-            border-radius: 4px;
         }
 
-        /* Scroll mode activated by JS */
         .viewport.is-scrolling {
             height: 350px; 
             overflow-y: auto;
             border: 1px solid var(--border-color);
         }
 
+        /* FIXED: Using a real landscape URL from Unsplash */
         .image-display {
             width: 100%;
-            height: 500px; /* Tall image for scrolling */
-            background: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80') center/top no-repeat;
+            height: 500px; 
+            background: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=800&auto=format&fit=crop') center/top no-repeat;
             background-size: cover;
-            background-color: #eee; /* Fallback color */
+            background-color: #f0f0f0; /* Fallback color if image is loading */
         }
 
         #info-panel {
@@ -94,7 +89,7 @@
 
         .show { display: block !important; }
 
-        /* Custom Scrollbar */
+        /* Scrollbar styling */
         .viewport::-webkit-scrollbar { width: 6px; }
         .viewport::-webkit-scrollbar-thumb { background: #bbb; border-radius: 10px; }
     </style>
@@ -127,6 +122,7 @@
         viewport.classList.toggle('is-scrolling');
         info.classList.toggle('show');
 
+        // Smooth scroll to bottom when info appears
         if (viewport.classList.contains('is-scrolling')) {
             setTimeout(() => {
                 viewport.scrollTo({ top: viewport.scrollHeight, behavior: 'smooth' });
