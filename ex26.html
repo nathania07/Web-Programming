@@ -7,49 +7,51 @@
     <style>
         body {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
+            font-family: sans-serif;
         }
 
         .container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            width: 90%;
-            max-width: 1000px;
+            justify-content: center;
+            gap: 20px; /* Adds space between the items */
+            width: 95%;
         }
 
-        /* Common style for the outer images */
+        /* Outer images: 33% width and 300px height */
         .image-outer {
             width: 33%;
             height: 300px;
         }
 
-        /* Left Image: Rounded corners, no distortion */
+        /* Left Image: Rounded corners (18px), no distortion */
         .img-left {
             width: 100%;
             height: 100%;
             border-radius: 18px;
-            object-fit: cover; /* Prevents distortion */
+            object-fit: cover; /* This prevents the stretching/distortion */
         }
 
-        /* Center Image: Circular, specific size, with border */
+        /* Center Image: Circular, 150px, with border */
         .img-center {
             width: 150px;
             height: 150px;
-            border-radius: 50%; /* Makes it a circle */
-            border: 2px solid #333;
+            border-radius: 50%; 
+            border: 2px solid #555;
             object-fit: cover;
+            flex-shrink: 0; /* Prevents the circle from getting squished */
         }
 
         /* Right Image: Sharp corners, WITH distortion */
         .img-right {
             width: 100%;
             height: 100%;
-            /* No object-fit here means the image will stretch/squish to fit */
+            /* Note: No object-fit here! This will cause the "distortion" requested. */
         }
     </style>
 </head>
@@ -57,13 +59,16 @@
 
     <div class="container">
         <div class="image-outer">
-            <img src="https://via.placeholder.com/600x800" alt="Eiffel Tower" class="img-left">
+            <img src="https://images.unsplash.com/photo-1543349689-9a4d426bee8e?q=80&w=600" 
+                 alt="Eiffel Tower" class="img-left">
         </div>
 
-        <img src="https://via.placeholder.com/150" alt="Landscape" class="img-center">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=400" 
+             alt="Landscape" class="img-center">
 
         <div class="image-outer">
-            <img src="https://via.placeholder.com/600x800" alt="Eiffel Tower" class="img-right">
+            <img src="https://images.unsplash.com/photo-1543349689-9a4d426bee8e?q=80&w=600" 
+                 alt="Eiffel Tower Distorted" class="img-right">
         </div>
     </div>
 
