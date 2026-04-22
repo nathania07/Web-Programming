@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrollable Content Area</title>
+    <title>Dynamic Scrollbox Layout</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -31,7 +31,6 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        /* Header remains fixed at the top */
         .header-row {
             display: flex;
             justify-content: space-between;
@@ -42,8 +41,7 @@
 
         .preview-label {
             font-size: 13px;
-            font-weight: bold;
-            color: var(--text-main);
+            color: var(--text-secondary);
         }
 
         .spec-button {
@@ -53,46 +51,56 @@
             border: 1px solid var(--text-main);
             color: var(--text-main);
             font-size: 11px;
-            padding: 0 10px;
+            padding: 0 12px;
             cursor: pointer;
+            z-index: 20;
         }
 
-        /* NEW: The Scrollable Wrapper */
-        .scroll-viewport {
-            width: 100%;
-            height: 300px; /* Fixed height for the viewing area */
-            overflow-y: auto; /* Enables vertical scrolling */
+        /* The viewport container */
+        .viewport {
+            width: 450px;
+            margin: 0 auto;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            overflow: hidden; /* Hide scrollbar initially */
+        }
+
+        /* This class is added via JavaScript when button is clicked */
+        .viewport.is-scrolling {
+            height: 350px; /* Fixed height to force scrolling */
+            overflow-y: auto;
             border: 1px solid var(--border-color);
         }
 
-        /* The tall content inside the scrollbox */
         .image-display {
             width: 100%;
-            height: 600px; /* Made very tall to demonstrate scrolling */
-            background: url('https://picsum.photos/450/800') center/cover;
+            /* A tall image ensures there is something to scroll through */
+            height: 500px; 
+            background: url('https://picsum.photos/id/11/450/600') center/top no-repeat;
+            background-size: cover;
         }
 
         #info-panel {
-            display: none; /* Hidden until button is pressed */
+            display: none;
             padding: 15px;
             background-color: var(--bg-gray);
+            border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
             font-size: 13px;
-            line-height: 1.8;
-            border-top: 1px solid var(--border-color);
+            line-height: 1.6;
         }
 
         .show {
             display: block !important;
         }
 
-        /* Custom Scrollbar */
-        .scroll-viewport::-webkit-scrollbar {
-            width: 8px;
+        /* Custom Scrollbar styling */
+        .viewport::-webkit-scrollbar {
+            width: 6px;
         }
-        .scroll-viewport::-webkit-scrollbar-thumb {
+        .viewport::-webkit-scrollbar-thumb {
             background: #ccc;
-            border-radius: 4px;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -101,12 +109,42 @@
 <div class="card">
     <div class="header-row">
         <span class="preview-label">預覽</span>
-        <button class="spec-button" onclick="toggleInfo()">查看資訊</button>
+        <button class="spec-button" onclick="activateScrollMode()">查看資訊</button>
     </div>
 
-    <div class="scroll-viewport">
+    <div class="viewport" id="mainViewport">
         <div class="image-display"></div>
         
         <div id="info-panel">
             <strong>Detailed Information:</strong><br>
-            修改
+            修改日期: 2017/10/12<br>
+            類型: JPG<br>
+            大小: 466.97KB<br>
+            路徑: \\designcenter.qnap.com.tw\DesignCenter\PM-RD\WEB\Stations\A_Image2PDF\v2\sample
+        </div>
+    </div>
+</div>
+
+<script>
+    function activateScrollMode() {
+        const viewport = document.getElementById('mainViewport');
+        const info = document.getElementById('info-panel');
+        
+        // Toggle the scrolling state
+        viewport.classList.toggle('is-scrolling');
+        info.classList.toggle('show');
+
+        // Scroll to the bottom to show information immediately
+        if (viewport.classList.contains('is-scrolling')) {
+            setTimeout(() => {
+                viewport.scrollTo({
+                    top: viewport.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
+    }
+</script>
+
+</body>
+</html>
