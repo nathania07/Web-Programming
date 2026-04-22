@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Layout Fix</title>
+    <title>Responsive Layout Exercise</title>
     <style>
         * {
             box-sizing: border-box;
@@ -25,7 +25,7 @@
             padding: 20px;
             border-radius: 15px;
             width: 100%;
-            max-width: 800px; /* Slightly wider for desktop */
+            max-width: 800px; 
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -34,20 +34,22 @@
         /* Top Box (Green) */
         .header-box {
             background-color: #a3cf52;
-            height: 120px;
+            min-height: 120px;
             border-radius: 8px;
+            width: 100%;
         }
 
-        /* Middle Section (Teal) */
+        /* Middle Section (Teal/Blue) */
         .middle-container {
             display: flex;
-            flex-direction: row; 
+            flex-direction: row; /* Desktop side-by-side */
             gap: 15px;
+            width: 100%;
         }
 
         .teal-box {
             background-color: #00bcd4;
-            height: 150px;
+            min-height: 150px; /* Fixed height for desktop */
             flex: 1;
             border-radius: 8px;
         }
@@ -55,31 +57,34 @@
         /* Bottom Section (Gray) */
         .bottom-container {
             display: grid;
-            /* Force 4 equal columns on desktop */
-            grid-template-columns: repeat(4, 1fr); 
+            grid-template-columns: repeat(4, 1fr); /* 4 boxes on desktop */
             gap: 15px;
+            width: 100%;
         }
 
         .gray-box {
             background-color: #e9ecef;
-            height: 60px;
+            min-height: 60px;
             border-radius: 4px;
-            width: 100%; /* Ensures it fills its grid cell */
         }
 
         /* --- MOBILE LAYOUT (< 480px) --- */
         @media (max-width: 480px) {
             .middle-container {
-                flex-direction: column; 
+                display: flex;
+                flex-direction: column; /* Stack them! */
+                gap: 10px;
             }
 
             .teal-box {
-                height: 60px; 
+                /* IMPORTANT: Adding width and height for mobile visibility */
+                width: 100% !important; 
+                min-height: 50px !important; 
+                display: block !important;
             }
 
             .bottom-container {
-                /* 2x2 Grid for mobile */
-                grid-template-columns: repeat(2, 1fr); 
+                grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
             }
         }
     </style>
