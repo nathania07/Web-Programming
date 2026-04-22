@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrollable Info Panel</title>
+    <title>Scrollable Content Area</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -31,6 +31,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
+        /* Header remains fixed at the top */
         .header-row {
             display: flex;
             justify-content: space-between;
@@ -41,7 +42,8 @@
 
         .preview-label {
             font-size: 13px;
-            color: var(--text-secondary);
+            font-weight: bold;
+            color: var(--text-main);
         }
 
         .spec-button {
@@ -50,46 +52,47 @@
             background: #ffffff;
             border: 1px solid var(--text-main);
             color: var(--text-main);
-            font-size: 13px;
-            padding: 0 12px;
+            font-size: 11px;
+            padding: 0 10px;
             cursor: pointer;
         }
 
-        .image-display {
-            width: 450px;
-            height: 240px;
-            background: url('https://picsum.photos/id/11/450/240') center/cover;
-            margin: 0 auto;
-            border: 1px solid #eee;
+        /* NEW: The Scrollable Wrapper */
+        .scroll-viewport {
+            width: 100%;
+            height: 300px; /* Fixed height for the viewing area */
+            overflow-y: auto; /* Enables vertical scrolling */
+            border: 1px solid var(--border-color);
         }
 
-        /* The Scrollable Info Panel */
+        /* The tall content inside the scrollbox */
+        .image-display {
+            width: 100%;
+            height: 600px; /* Made very tall to demonstrate scrolling */
+            background: url('https://picsum.photos/450/800') center/cover;
+        }
+
         #info-panel {
-            display: none;
-            margin-top: 15px;
+            display: none; /* Hidden until button is pressed */
             padding: 15px;
             background-color: var(--bg-gray);
-            border: 1px solid var(--border-color);
             color: var(--text-secondary);
             font-size: 13px;
             line-height: 1.8;
-            
-            /* SCROLLBOX SETTINGS */
-            max-height: 120px;    /* Limits the height */
-            overflow-y: auto;     /* Adds scrollbar if content is taller than max-height */
-        }
-
-        /* Optional: Style the scrollbar to look cleaner */
-        #info-panel::-webkit-scrollbar {
-            width: 6px;
-        }
-        #info-panel::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 10px;
+            border-top: 1px solid var(--border-color);
         }
 
         .show {
             display: block !important;
+        }
+
+        /* Custom Scrollbar */
+        .scroll-viewport::-webkit-scrollbar {
+            width: 8px;
+        }
+        .scroll-viewport::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -101,28 +104,9 @@
         <button class="spec-button" onclick="toggleInfo()">查看資訊</button>
     </div>
 
-    <div class="image-display"></div>
-
-    <div id="info-panel">
-        <strong>Detailed Information:</strong><br>
-        修改日期: 2017/10/12<br>
-        類型: JPG<br>
-        大小: 466.97KB<br>
-        路徑: \\designcenter.qnap.com.tw\DesignCenter\PM-RD\WEB\Stations\A_Image2PDF\v2\sample<br>
-        解析度: 450 x 240 px<br>
-        相機: Canon EOS 5D Mark IV<br>
-        曝光時間: 1/100 sec<br>
-        ISO: 200<br>
-        光圈: f/8.0
-    </div>
-</div>
-
-<script>
-    function toggleInfo() {
-        const info = document.getElementById('info-panel');
-        info.classList.toggle('show');
-    }
-</script>
-
-</body>
-</html>
+    <div class="scroll-viewport">
+        <div class="image-display"></div>
+        
+        <div id="info-panel">
+            <strong>Detailed Information:</strong><br>
+            修改
