@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Image Styling Practice</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        /* Common style for the outer images */
+        .image-outer {
+            width: 33%;
+            height: 300px;
+        }
+
+        /* Left Image: Rounded corners, no distortion */
+        .img-left {
+            width: 100%;
+            height: 100%;
+            border-radius: 18px;
+            object-fit: cover; /* Prevents distortion */
+        }
+
+        /* Center Image: Circular, specific size, with border */
+        .img-center {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Makes it a circle */
+            border: 2px solid #333;
+            object-fit: cover;
+        }
+
+        /* Right Image: Sharp corners, WITH distortion */
+        .img-right {
+            width: 100%;
+            height: 100%;
+            /* No object-fit here means the image will stretch/squish to fit */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="image-outer">
+            <img src="https://via.placeholder.com/600x800" alt="Eiffel Tower" class="img-left">
+        </div>
+
+        <img src="https://via.placeholder.com/150" alt="Landscape" class="img-center">
+
+        <div class="image-outer">
+            <img src="https://via.placeholder.com/600x800" alt="Eiffel Tower" class="img-right">
+        </div>
+    </div>
+
+</body>
+</html>
