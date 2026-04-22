@@ -28,7 +28,7 @@
             background: white;
             padding: 15px 20px;
             border: 1px solid #ddd;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .header-row {
@@ -41,7 +41,8 @@
 
         .preview-label {
             font-size: 13px;
-            color: var(--text-secondary);
+            color: var(--text-main);
+            font-weight: 500;
         }
 
         .spec-button {
@@ -53,31 +54,32 @@
             font-size: 11px;
             padding: 0 12px;
             cursor: pointer;
-            z-index: 20;
+            transition: all 0.2s;
         }
 
-        /* The viewport container */
+        .spec-button:hover { background-color: #f0f0f0; }
+
         .viewport {
             width: 450px;
             margin: 0 auto;
             border: 1px solid transparent;
-            transition: all 0.3s ease;
-            overflow: hidden; /* Hide scrollbar initially */
+            overflow: hidden; 
+            border-radius: 4px;
         }
 
-        /* This class is added via JavaScript when button is clicked */
+        /* Scroll mode activated by JS */
         .viewport.is-scrolling {
-            height: 350px; /* Fixed height to force scrolling */
+            height: 350px; 
             overflow-y: auto;
             border: 1px solid var(--border-color);
         }
 
         .image-display {
             width: 100%;
-            /* A tall image ensures there is something to scroll through */
-            height: 500px; 
-            background: url('https://picsum.photos/id/11/450/600') center/top no-repeat;
+            height: 500px; /* Tall image for scrolling */
+            background: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80') center/top no-repeat;
             background-size: cover;
+            background-color: #eee; /* Fallback color */
         }
 
         #info-panel {
@@ -90,18 +92,11 @@
             line-height: 1.6;
         }
 
-        .show {
-            display: block !important;
-        }
+        .show { display: block !important; }
 
-        /* Custom Scrollbar styling */
-        .viewport::-webkit-scrollbar {
-            width: 6px;
-        }
-        .viewport::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 10px;
-        }
+        /* Custom Scrollbar */
+        .viewport::-webkit-scrollbar { width: 6px; }
+        .viewport::-webkit-scrollbar-thumb { background: #bbb; border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -114,7 +109,6 @@
 
     <div class="viewport" id="mainViewport">
         <div class="image-display"></div>
-        
         <div id="info-panel">
             <strong>Detailed Information:</strong><br>
             修改日期: 2017/10/12<br>
@@ -130,17 +124,12 @@
         const viewport = document.getElementById('mainViewport');
         const info = document.getElementById('info-panel');
         
-        // Toggle the scrolling state
         viewport.classList.toggle('is-scrolling');
         info.classList.toggle('show');
 
-        // Scroll to the bottom to show information immediately
         if (viewport.classList.contains('is-scrolling')) {
             setTimeout(() => {
-                viewport.scrollTo({
-                    top: viewport.scrollHeight,
-                    behavior: 'smooth'
-                });
+                viewport.scrollTo({ top: viewport.scrollHeight, behavior: 'smooth' });
             }, 100);
         }
     }
