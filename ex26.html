@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS Image Styling Practice</title>
     <style>
         body {
@@ -11,47 +10,46 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #f8f9fa;
-            font-family: sans-serif;
+            background-color: #f0f0f0;
         }
 
         .container {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px; /* Adds space between the items */
-            width: 95%;
+            gap: 20px;
+            width: 90%;
         }
 
-        /* Outer images: 33% width and 300px height */
+        /* The two side images */
         .image-outer {
             width: 33%;
             height: 300px;
         }
 
-        /* Left Image: Rounded corners (18px), no distortion */
+        /* Left: No distortion (cover) */
         .img-left {
             width: 100%;
             height: 100%;
             border-radius: 18px;
-            object-fit: cover; /* This prevents the stretching/distortion */
+            object-fit: cover; 
         }
 
-        /* Center Image: Circular, 150px, with border */
+        /* Center: Circle */
         .img-center {
             width: 150px;
             height: 150px;
             border-radius: 50%; 
-            border: 2px solid #555;
+            border: 2px solid black;
             object-fit: cover;
-            flex-shrink: 0; /* Prevents the circle from getting squished */
+            flex-shrink: 0;
         }
 
-        /* Right Image: Sharp corners, WITH distortion */
+        /* Right: Sharp corners + Distortion */
         .img-right {
             width: 100%;
             height: 100%;
-            /* Note: No object-fit here! This will cause the "distortion" requested. */
+            /* No object-fit here makes it stretch/distort */
         }
     </style>
 </head>
@@ -59,16 +57,13 @@
 
     <div class="container">
         <div class="image-outer">
-            <img src="https://images.unsplash.com/photo-1543349689-9a4d426bee8e?q=80&w=600" 
-                 alt="Eiffel Tower" class="img-left">
+            <img src="https://picsum.photos/id/1011/600/800" class="img-left">
         </div>
 
-        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=400" 
-             alt="Landscape" class="img-center">
+        <img src="https://picsum.photos/id/1015/150/150" class="img-center">
 
         <div class="image-outer">
-            <img src="https://images.unsplash.com/photo-1543349689-9a4d426bee8e?q=80&w=600" 
-                 alt="Eiffel Tower Distorted" class="img-right">
+            <img src="https://picsum.photos/id/1011/600/800" class="img-right">
         </div>
     </div>
 
