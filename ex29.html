@@ -1,143 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bootstrap Practice & Image Preview</title>
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f8f8f8;
-      padding: 20px;
-    }
-
-    /* Styles matching your designer redlines (Image 1) */
-    .preview-card {
-      background: white;
-      border: 1px solid #ddd;
-      padding: 15px;
-      max-width: 500px;
-      margin: 0 auto 30px;
-    }
-
-    .header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .preview-label {
-      font-size: 13px;
-      color: #707070;
-    }
-
-    /* Button specific design: h22 / R8 / #2f2f2f */
-    .spec-button {
-      height: 22px;
-      border-radius: 8px;
-      background: #ffffff;
-      border: 1px solid #2f2f2f;
-      color: #2f2f2f;
-      font-size: 11px;
-      padding: 0 10px;
-      line-height: 20px;
-      cursor: pointer;
-    }
-
-    .image-container {
-      width: 100%;
-      height: 240px;
-      background: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80') center/top no-repeat;
-      background-size: cover;
-      border: 1px solid #eee;
-    }
-
-    /* Scrollbox logic */
-    .viewport {
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .viewport.is-scrolling {
-      height: 350px; 
-      overflow-y: auto;
-      border: 1px solid #eaeaea;
-    }
-
-    #info-panel {
-      display: none;
-      padding: 15px;
-      background-color: #f6f6f6;
-      font-size: 13px;
-      color: #707070;
-      line-height: 1.6;
-    }
-  </style>
+    <title>Bootstrap Practice</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    <style>
+        /* Small adjustment to match the screenshot padding */
+        body {
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            border: 1px solid #f0f0f0;
+            padding: 20px;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
-  
-  <div class="preview-card">
-    <div class="header-row">
-      <span class="preview-label">預覽</span>
-      <button class="spec-button" onclick="toggleInfo()">查看資訊</button>
+    
+    <div class="jumbotron text-center">
+        <h1>My First Bootstrap Page</h1>
     </div>
 
-    <div class="viewport" id="mainViewport">
-      <div class="image-container"></div>
-      <div id="info-panel">
-        <strong>Detailed Information:</strong><br>
-        修改日期: 2017/10/12<br>
-        類型: JPG<br>
-        大小: 466.97KB<br>
-        路徑: \\designcenter.qnap.com.tw\DesignCenter\PM-RD\WEB\Stations\A_Image2PDF\v2\sample
-      </div>
+    <div class="form-group">
+        <label for="inputField">Input:</label>
+        <input type="text" class="form-control" id="inputField">
     </div>
-  </div>
 
-  <hr>
+    <div class="alert alert-success">
+        Successful alert
+    </div>
 
-  <div class="jumbotron">
-    <h1>My First Bootstrap Page</h1>
-  </div>
-
-  <div class="form-group">
-    <label for="usr">Input:</label>
-    <input type="text" class="form-control" id="usr">
-  </div>
-
-  <div class="alert alert-success">
-    Successful alert
-  </div>
-
-  <div style="margin-top: 15px;">
-    <button type="button" class="btn btn-default">Button</button>
-    <span class="badge">badge</span>
-  </div>
+    <div style="margin-top: 15px;">
+        <button type="button" class="btn btn-default">Button</button>
+        <span class="badge">badge</span>
+    </div>
 
 </div>
 
-<script>
-  function toggleInfo() {
-    const viewport = document.getElementById('mainViewport');
-    const info = document.getElementById('info-panel');
-    
-    viewport.classList.toggle('is-scrolling');
-    info.style.display = info.style.display === 'block' ? 'none' : 'block';
-
-    if (viewport.classList.contains('is-scrolling')) {
-      setTimeout(() => {
-        viewport.scrollTo({ top: viewport.scrollHeight, behavior: 'smooth' });
-      }, 100);
-    }
-  }
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </body>
 </html>
