@@ -3,103 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Designer Spec Button</title>
+    <title>Designer Spec - Detailed View</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <style>
-        /* CSS variables based on the designer's redlines */
         :root {
             --btn-height: 22px;
             --btn-radius: 8px;
-            --btn-bg: #ffffff;
-            --btn-outline: #2f2f2f;
-            --text-color: #2f2f2f;
-            --font-main: 'Roboto', sans-serif;
+            --text-gray: #2f2f2f;
+            --list-select: #e8f3ff;
+            --border-color: #eaeaea;
         }
 
         body {
-            font-family: var(--font-main), Arial, sans-serif;
-            padding: 40px;
-            background-color: #f5f5f5;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
+            padding-top: 50px;
         }
 
         .container {
-            width: 496px; /* Based on the blue dimension line in the image */
+            width: 496px;
             background: white;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-align: center;
+            border: 1px solid #ccc;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .image-placeholder {
+        /* Main Preview Image */
+        .main-preview {
             width: 450px;
             height: 240px;
-            background: #ddd url('https://via.placeholder.com/450x240') center/cover;
-            margin: 0 auto 20px;
+            background: url('https://picsum.photos/450/240?lake') center/cover;
+            margin: 0 auto 10px;
         }
 
-        /* The Button based on the circled specs */
+        /* Button Container aligned to the right like the redlines */
+        .button-row {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+            padding-right: 23px;
+        }
+
         .spec-button {
             height: var(--btn-height);
             border-radius: var(--btn-radius);
-            background-color: var(--btn-bg);
-            border: 1px solid var(--btn-outline);
-            color: var(--text-color);
+            background: #fff;
+            border: 1px solid var(--text-gray);
             font-size: 13px;
-            padding: 0 15px;
+            padding: 0 12px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-flex;
+            color: var(--text-gray);
+        }
+
+        /* The Scrolling Details Box */
+        #details-box {
+            display: none; /* Hidden by default */
+            border: 1px solid var(--border-color);
+            background-color: #fff;
+            max-height: 200px; /* Fixed height to force scrolling */
+            overflow-y: auto;  /* Enable vertical scrollbar */
+        }
+
+        /* List Item Styling */
+        .list-item {
+            display: flex;
             align-items: center;
-            justify-content: center;
-        }
-
-        .spec-button:hover {
-            background-color: #f0f0f0;
-        }
-
-        /* Hidden detailed information section */
-        #details {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f6f6f6; /* Matching header bg color in notes */
-            border-top: 1px solid #eaeaea;
-            display: none;
-            text-align: left;
+            padding: 5px 10px;
             font-size: 13px;
-            color: #707070;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-gray);
         }
 
-        .show {
-            display: block !important;
+        .list-item:hover {
+            background-color: var(--list-select);
         }
+
+        .list-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .list-item img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        /* Metadata Section at the bottom of the scroll */
+        .info-footer {
+            padding: 10px;
+            background: #f6f6f6;
+            font-size: 12px;
+            color: #707070;
+            line-height: 1.6;
+        }
+        
+        .show { display: block !important; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="image-placeholder"></div>
-        
-        <button class="spec-button" onclick="toggleDetails()">
-            查看資訊
-        </button>
+<div class="container">
+    <div class="main-preview"></div>
 
-        <div id="details">
-            <strong>Detailed Information:</strong><br>
-            Date: 2017/10/12<br>
-            Type: JPG<br>
-            Size: 466.97KB<br>
-            Path: \\designcenter.qnap.com.tw\...
-        </div>
+    <div class="button-row">
+        <button class="spec-button" onclick="toggleDetails()">查看資訊</button>
     </div>
 
-    <script>
-        function toggleDetails() {
-            const details = document.getElementById('details');
-            details.classList.toggle('show');
-        }
-    </script>
+    <div id="details-box">
+        <div class="list-item">
+            <input type="checkbox"> <img src="https://picsum.photos/20/20?1"> 20171012_1.jpg
+        </div>
+        <div class="list-item">
+            <input type="checkbox"> <img src="https://picsum.photos/20/20?2"> 20171012_2.jpg
+        </div>
+        <div class="list-item">
+            <input type="checkbox" checked> <img src="https://picsum.photos/20/20?3"> 20171012_3.jpg
+        </div>
+        <div class="list-item">
+            <input type="checkbox"> <img src="https://picsum.photos/20/20?4"> 20171012_4.jpg
+        </div>
+        <div class="list-item">
+            <input type="checkbox"> <img src="https://picsum.photos/20/20?5"> 20171012_5.jpg
+        </div>
+
+        <div class="info-footer">
+            <strong>Detailed Information:</strong><br>
+            修改日期: 2017/10/12<br>
+            類型: JPG<br>
+            大小: 466.97KB<br>
+            路徑: \\designcenter.qnap.com.tw\DesignCenter\PM-RD...
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleDetails() {
+        const box = document.getElementById('details-box');
+        box.classList.toggle('show');
+    }
+</script>
 
 </body>
 </html>
