@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout Exercise 27</title>
+    <style>
+        /* General Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #58b9ff; /* Blue background from image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* The main white card */
+        .card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 600px; /* Limits width on desktop */
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Top Box (Green) */
+        .header-box {
+            background-color: #a3cf52;
+            height: 120px;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        /* Middle Section (Teal) */
+        .middle-container {
+            display: flex;
+            flex-direction: row; /* Default layout (b) */
+            gap: 10px;
+        }
+
+        .teal-box {
+            background-color: #00bcd4;
+            height: 150px;
+            flex: 1; /* Makes them equal width */
+            border-radius: 4px;
+        }
+
+        /* Bottom Section (Gray) */
+        .bottom-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Default layout (b) */
+            gap: 10px;
+        }
+
+        .gray-box {
+            background-color: #e9ecef;
+            height: 60px;
+            border-radius: 4px;
+        }
+
+        /* --- RESPONSIVE BREAKPOINT (480px) --- */
+        /* This handles Layout (a) */
+        @media (max-width: 480px) {
+            .middle-container {
+                flex-direction: column; /* Stacks teal boxes vertically */
+            }
+
+            .teal-box {
+                height: 50px; /* Shorter boxes to match the look of image (a) */
+            }
+
+            .bottom-container {
+                /* Changes from 4 columns to a 2x2 grid */
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="header-box"></div>
+
+        <div class="middle-container">
+            <div class="teal-box"></div>
+            <div class="teal-box"></div>
+            <div class="teal-box"></div>
+        </div>
+
+        <div class="bottom-container">
+            <div class="gray-box"></div>
+            <div class="gray-box"></div>
+            <div class="gray-box) "></div>
+            <div class="gray-box"></div>
+        </div>
+    </div>
+
+</body>
+</html>
