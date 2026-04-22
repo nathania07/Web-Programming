@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Layout Exercise 27</title>
+    <title>Responsive Layout Fix</title>
     <style>
-        /* General Reset */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -13,7 +12,7 @@
         }
 
         body {
-            background-color: #58b9ff; /* Blue background from image */
+            background-color: #58b9ff; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,16 +20,15 @@
             padding: 20px;
         }
 
-        /* The main white card */
         .card {
             background-color: white;
-            padding: 15px;
+            padding: 20px;
             border-radius: 15px;
             width: 100%;
-            max-width: 600px; /* Limits width on desktop */
+            max-width: 800px; /* Slightly wider for desktop */
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
         }
 
         /* Top Box (Green) */
@@ -38,49 +36,49 @@
             background-color: #a3cf52;
             height: 120px;
             border-radius: 8px;
-            width: 100%;
         }
 
         /* Middle Section (Teal) */
         .middle-container {
             display: flex;
-            flex-direction: row; /* Default layout (b) */
-            gap: 10px;
+            flex-direction: row; 
+            gap: 15px;
         }
 
         .teal-box {
             background-color: #00bcd4;
             height: 150px;
-            flex: 1; /* Makes them equal width */
-            border-radius: 4px;
+            flex: 1;
+            border-radius: 8px;
         }
 
         /* Bottom Section (Gray) */
         .bottom-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* Default layout (b) */
-            gap: 10px;
+            /* Force 4 equal columns on desktop */
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px;
         }
 
         .gray-box {
             background-color: #e9ecef;
             height: 60px;
             border-radius: 4px;
+            width: 100%; /* Ensures it fills its grid cell */
         }
 
-        /* --- RESPONSIVE BREAKPOINT (480px) --- */
-        /* This handles Layout (a) */
+        /* --- MOBILE LAYOUT (< 480px) --- */
         @media (max-width: 480px) {
             .middle-container {
-                flex-direction: column; /* Stacks teal boxes vertically */
+                flex-direction: column; 
             }
 
             .teal-box {
-                height: 50px; /* Shorter boxes to match the look of image (a) */
+                height: 60px; 
             }
 
             .bottom-container {
-                /* Changes from 4 columns to a 2x2 grid */
+                /* 2x2 Grid for mobile */
                 grid-template-columns: repeat(2, 1fr); 
             }
         }
@@ -100,7 +98,7 @@
         <div class="bottom-container">
             <div class="gray-box"></div>
             <div class="gray-box"></div>
-            <div class="gray-box) "></div>
+            <div class="gray-box"></div>
             <div class="gray-box"></div>
         </div>
     </div>
