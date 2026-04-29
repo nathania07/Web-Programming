@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Button Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            border: 1px solid #ccc;
+            padding: 40px;
+            background-color: white;
+            text-align: left;
+            width: 200px;
+        }
+
+        #displayText {
+            font-size: 32px;
+            font-family: "Times New Roman", serif;
+            margin-bottom: 20px;
+            color: black;
+            transition: color 0.3s ease;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+            border: 1px solid #ababab;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="displayText">Hello</div>
+        <button id="actionButton">Button</button>
+    </div>
+
+    <script>
+        const text = document.getElementById('displayText');
+        const btn = document.getElementById('actionButton');
+
+        // 1. Mouse Over: Change text color to Magenta/Pink
+        btn.addEventListener('mouseover', () => {
+            text.style.color = 'magenta';
+        });
+
+        // 2. Mouse Out: Reset color to black (optional, for better UX)
+        btn.addEventListener('mouseout', () => {
+            if (text.innerText !== "Mouse Click") {
+                text.style.color = 'black';
+            }
+        });
+
+        // 3. Mouse Click: Change text content and keep color Magenta
+        btn.addEventListener('click', () => {
+            text.innerText = "Mouse Click";
+            text.style.color = 'magenta';
+        });
+    </script>
+
+</body>
+</html>
